@@ -8,8 +8,11 @@
 
 - Webpak
 
-- JSX
+- Component & JSX
 
+- Props & State
+
+- useState & useEffect Hooks
 # Ecosystem
 
 # Advance
