@@ -36,3 +36,31 @@ Create React App은 기본적으로 Yarn을 패키지 매니저로 사용한다.
 ```
 
 node_modules 디렉토리에 모든 패키지가 다운받아져있는 것도 확인할 수 있다.
+
+
+src/index.js 파일을 확인해 보면 다음과 같이
+```JS
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+```
+
+App.js에서 가지고 온 App 컴포넌트를 ReactDom.render로 브라우저의 실제 DOM(id가 root인)에 렌더링한다.
+
+id가 root인 DOM은 public/index.html의 body에서 
+```HTML
+ <div id="root"></div>
+```
+와 같이 찾아볼 수 있다.
+
+=> 결론: 리액트 컴포넌트가 렌더링된 결과물이 위의 div 내부에 렌더링 된다.
