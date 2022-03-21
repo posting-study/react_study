@@ -8,11 +8,19 @@
 
 - [Webpak](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/webpack.md)
 
-- Component & JSX
+- [Component & JSX](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/component.md)
 
 - [Props & State](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/props&state.md)
 
 - useState & useEffect Hooks
+
+- setState
+
+- Conditional Rendering
+
+- Component Lifecycle Method
+
+- List & Keys
 # Ecosystem
 
 # Advance
