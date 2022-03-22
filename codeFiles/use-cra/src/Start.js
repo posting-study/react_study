@@ -1,9 +1,16 @@
-import React from "react";
+import React , {useState} from "react";
 
-function Start({project, color}){
+function Start(){
+    const [color, setColor] = useState("red");
+    function onClick(){
+        if(color==="red") setColor("blue");
+        else setColor("red");
+    }
     return(
         <>
-        <h1 style={{color}}>안녕하세요 {project}를 시작합니다</h1>
+        <button style={{backgroundColor: color}} onClick={onClick}>
+            확인
+        </button>
         </>
     );
 }

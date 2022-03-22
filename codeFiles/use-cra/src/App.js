@@ -1,11 +1,12 @@
 import Start from './Start';
+import Count from './Count';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-    <Start color="blue" project="노드"/>
-    <Start project="리액트"/> 
+    <Start/>
+    <Count/>
     </div>
   );
 }
