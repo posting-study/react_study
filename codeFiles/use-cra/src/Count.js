@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function Count(){
     const [number, setNumber] = useState(0);
-    function onClickIncrease(){
+    const onClickIncrease = () => {
         setNumber(number+1);
     }
-    function onClickDecrease(){
+    const onClickDecrease = () => {
         setNumber(number-1);
     }
 
+    useEffect(()=>{
+        document.title=`업데이트 횟수: ${number}`;
+    })
     return(
         <>
         <h1>{number}</h1>

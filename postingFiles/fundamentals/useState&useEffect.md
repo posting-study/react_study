@@ -16,27 +16,68 @@ const [상탯값, 상탯값변경함수] = useState(초깃값);
 
 리액트는 효율적으로 렌더링하기 위해 상탯값 변경을 `batch`로 처리하는데, 상탯값 변경 함수가 비동기로 동작한다는 것과 함께 이해해야 한다. (비동기로 동작하지만 순서는 보장된다)
 
++) 리액트는 내부에서 관리하는 이벤트 처리 함수에 대해서만 상탯값 변경을 batch로 처리하고, 리액트 외부에서 관리되는 이벤트 처리 함수는 상탯값 변경이 batch로 처리되지 않는다. (ex.window 객체의 이벤트 처리 함수)
 
-상탯값 변경함수에 함수 넣기(?)
 
 ```JS
-function ChangeColor()){
-    const [color, setColor] = useState("red");
-    function onClick(){
-        if(color==="red") setColor("blue");
-        else setColor("red");
+import React, {useState} from 'react';
+
+function Count(){
+    const [number, setNumber] = useState(0);
+    const onClickIncrease = () => {
+        setNumber(number+1);
     }
+    const onClickDecrease = () => {
+        setNumber();
+    }
+
+    //상탯값 변경 함수에 함수를 넘길 수 있는데, 컴포넌트 최적화 시 사용한다
+    /*
+    const onClickDecrease = () => {
+        setNumber(number=>number-1);
+    }
+    */
     return(
         <>
-        <button style={{backgroundColor: color}} onClick={onClick}>
-            확인
-        </button>
+        <h1>{number}</h1>
+        <button onClick={onClickIncrease}>+1</button>
+        <button onClick={onClickDecrease}>-1</button>
         </>
     );
 }
+
+export default Count;
+
 ```
 
-useState 훅 하나로 여러 상탯값을 관리할 수도 있다. useStaate 훅의 상탯값 변경 함수는 이전 상탯값을 덮어씀을 이해하자. useState 훅은 이전 상탯값을 덮어쓰기 때문에 전개연산자를 써야 하고, 상탯값을 하나의 객체로 관리할 때는 useReducer 훅을 사용하는 것이 더 좋다
+useState 훅 하나로 여러 상탯값을 관리할 수도 있다. useState 훅의 상탯값 변경 함수는 이전 상탯값을 덮어쓰기 때문에 전개연산자를 써야 하고, 상탯값을 하나의 객체로 관리할 때는 useReducer 훅을 사용하는 것이 더 좋다.
 
 
 ## useEffect 훅
+함수를 실행할 때 함수 외부의 상태를 변경하는 연산을 부수 효과라고 하는데 대부분의 부수 효과는 useEffect 훅에서 처리하는게 좋다. (부수효과 ex: api 호출, 이벤트 처리 함수 등록...)
+
+useEffect 훅에 입력하는 함수를 부수 효과 함수라고 하고, 부수 효과 함수는 렌더링 결과가 실제 돔에 반영된 후 호출되고, 컴포넌트가 사라지기 직전에 마지막으로 호출된다. 
+
+### 컴포넌트에서 API 호출하기
+```JS
+useEffect(
+        ()=>{
+            getUserApi(userId).then(data=>setUser(data));
+        }, //api 통신을 하고받아온 데이터는 user 상탯값에 저장한다
+        [userId], //userId 값이 변경되는 경우에만 api 통신을 하도록 설정함
+    );
+```
+=> 부수 효과 함수는 렌더링할때마다 호출되어 불필요한 api 통신을 많이 하는데, 이를 방지하기 위해서 useEffect 훅의 두번째 매개변수로 배열(의존성 배열이라 함)을 입력하면 배열의 값이 변경되는 경우에만 함수가 호출된다.
+### 이벤트 처리 함수 등록, 해제
+```JS
+useEffect(()=>{
+    const onResize=()=>setWidth(window.innerWidth);
+    window.addEventListener('resize', onResize); //창크기가 변경될때마다 onResize 이벤트 처리 함수 호출됨
+    return ()=>{ //부수 효과 함수는 함수를 반환할 수 있다.
+    window.removeEventListener('resize', onResize);
+    };
+}, []); 
+```
+=> 부수효과 함수는 함수를 반환할 수 있다. 반환된 함수는 부수 효과 함수가 호출되기 직전에 호출되고, 컴포넌트가 사라지기 직전에 마지막으로 호출된다.(프로그램이 비정상적으로 종료되지 않는 한 반드시 호출되는 것이 보장된다)
+
+=> 의존성 배열로 빈 배열을 입력하면 컴포넌트가 생성될 때만 부수효과 함수가 호출되고, 컴포넌트가 사라질 때만 반환된 함수가 호출된다.
