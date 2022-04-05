@@ -28,7 +28,7 @@ function Count(){
         setNumber(number+1);
     }
     const onClickDecrease = () => {
-        setNumber();
+        setNumber(number-1);
     }
 
     //상탯값 변경 함수에 함수를 넘길 수 있는데, 컴포넌트 최적화 시 사용한다
