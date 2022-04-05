@@ -53,6 +53,36 @@ export default Count;
 useState 훅 하나로 여러 상탯값을 관리할 수도 있다. useState 훅의 상탯값 변경 함수는 이전 상탯값을 덮어쓰기 때문에 전개연산자를 써야 하고, 상탯값을 하나의 객체로 관리할 때는 useReducer 훅을 사용하는 것이 더 좋다.
 
 
+### setState
+
+setState()는 컴포넌트의 state 객체에 대한 업데이트를 실행한다. state가 변경되면, 컴포넌트가 리렌더링된다는 것이 앞에서 useState 훅을 통해 확인한 내용이다.
+
+setState를 의도에 맞게 사용하기 위해 유의해야할 점이 있다. 
+
+state는 객체이고, setState()는 비동기로 처리되고 이를 연속적으로 호출하면 앞에서 봤듯이 batch로 처리된다. batch 처리가 되면, 리액트는 state 값을 바로 바꾸는 것이 아니라 효율적인 렌더링을 위해 변경 상태값을 일괄적으로 처리한다.
+
+이 때문에 setState 호출 직후에 새로운 값이 바로 state에 반영되지 않을 수 있다. 그래서 항상 최신의 state 값을 사용하려면, 객체를 넘기는 대신 업데이트 함수를 작성해야 한다. 코드로 확인하자.
+
+앞에 작성했던 onClickIncrease 함수에서 setNumber를 세번 연속으로 작성해보자
+```JS
+const onClickIncrease = () => {
+        setNumber(number+1);
+        setNumber(number+1);
+        setNumber(number+1);
+}
+```
+이렇게 하면 버튼을 클릭하면 number가 3 증가할 것 같지만, 그렇지 않다. 1만 증가된다.
+
+setState를 연속 호출해 3을 증가시키고 싶다면 업데이트 함수를 적어줘야 한다.
+```JS
+const onClickIncrease = () => {
+        setNumber(number => number+1);
+        setNumber(number => number+1);
+        setNumber(number => number+1);
+}
+```
+이렇게 함수를 적어주면 3씩 증가되는 것을 확인할 수 있다!
+------
 ## useEffect 훅
 함수를 실행할 때 함수 외부의 상태를 변경하는 연산을 부수 효과라고 하는데 대부분의 부수 효과는 useEffect 훅에서 처리하는게 좋다. (부수효과 ex: api 호출, 이벤트 처리 함수 등록...)
 

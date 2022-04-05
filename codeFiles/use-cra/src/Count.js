@@ -3,7 +3,9 @@ import React, {useState, useEffect} from 'react';
 function Count(){
     const [number, setNumber] = useState(0);
     const onClickIncrease = () => {
-        setNumber(number+1);
+        setNumber(number => number+1);
+        setNumber(number => number+1);
+        setNumber(number => number+1);
     }
     const onClickDecrease = () => {
         setNumber(number-1);
