@@ -12,9 +12,7 @@
 
 - [Props & State](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/props&state.md)
 
-- [useState & useEffect Hooks](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/useState&useEffect.md)
-
-- setState
+- [useState/setState & useEffect Hooks](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/useState&useEffect.md)
 
 - Conditional Rendering
 
