@@ -1,12 +1,10 @@
-import Start from './Start';
-import Count from './Count';
+import Log from './Log'
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-    <Start/>
-    <Count/>
+    <Log isLoggedIn={true}/>
     </div>
   );
 }
