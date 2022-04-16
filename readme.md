@@ -16,9 +16,10 @@
 
 - [Conditional Rendering](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/conditional-rendering.md)
 
+- [List & Keys](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/list&key.md)
+
 - Component Lifecycle Method
 
-- List & Keys
 # Ecosystem
 
 # Advance
