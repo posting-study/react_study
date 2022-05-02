@@ -1,7 +1,8 @@
 # **REACT 2022**
 
+# 리액트 기본 정리
 
-# Fundamentals
+## Fundamentals
 - [Create React App](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/cra.md)
 
 - [Babel](https://github.com/posting-study/react_study/blob/main/postingFiles/fundamentals/babel.md)
@@ -20,8 +21,17 @@
 
 - Component Lifecycle Method
 
-# Ecosystem
+## Ecosystem
 
-# Advance
+## Advance
 
 - Hooks
+
+---------
+# 함수형 프로그래밍 정리
+
+-[함수형 프로그래밍이란](https://github.com/posting-study/react_study/blob/main/postingFiles/functional-programming/intro.md)
+
+-----------
+
+# 그 외 프론트 기술
