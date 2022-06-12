@@ -73,7 +73,7 @@ const onClickIncrease = () => {
 ```
 이렇게 하면 버튼을 클릭하면 number가 3 증가할 것 같지만, 그렇지 않다. 1만 증가된다.
 
-setState를 연속 호출해 3을 증가시키고 싶다면 업데이트 함수를 적어줘야 한다.
+setState를 연속 호출해 3을 증가시키고 싶다면 업데이트 함수를 적어줘야 한다. (함수 호출이 곧 렌더링)
 ```JS
 const onClickIncrease = () => {
         setNumber(number => number+1);
