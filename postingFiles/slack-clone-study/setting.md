@@ -28,17 +28,61 @@ use-cra 사용하지 않고 세팅
 
 ## 바벨 & 웹팩 설정
 
+**설치 설정**
+- `$npm i -D webpack @babel/core babel-loader @babel/preset-env @babel/preset-react`
+- `$npm i -D @types/webpack @types/node @babel/preset-typescript`
+- `$npm i style-loader css-loader`
+
+**index.html 생성**
+style 태그에 전체적으로 적용할 css 코드 작성 (핵심 css, 나머지 css는 js 파일에서 작성)
+
+결국에 유저나 검색엔진이 제일 먼저 보는 것은 이 index.html 파일
+
+**코드 설정**
+웹팩: 노드 런타임에서 작동함 -> NODE_ENV 사용할 수 있음
+
+typescript를 사용하기에 `webpack.config.ts` 파일 생성해줌
+
+- mode와 devtool 기본 설정
+- resolve의 extensions: 바벨이 처리할 확장할 목록
+- alias : tsconfig.json에서와 마찬가지로 파일 path 처리
+- entry : 웹팩의 결과물(결과물 여러개로 만들어낼 수 있음) -> output에 dist폴더로 만들어지는 설정이 있음
+- @babel/preset-env 에서 어느 브라우저에서 작동하게끔 도와줌
+- css loader를 통해 작동
+- devServer
+- dev 버전일 때랑 아닐 때 사용할 플러그인 설정
 
 
+**=> 결국에 html,css,js 파일만이 브라우저가 인식하기 때문에 결과물이 저 세 파일이도록 설정해야하는 것임**
+
+실행하려면 `$npx webpack` 혹은 `$npm i webpack -g` 웹팩을 전역적으로 설치해줘서 `$webpack`을 명령어로 씀
+
+-> 그러나 `$npx webpack` 이걸 사용하자
+
+이때 `tsconfig-for-webpack-config.json` 파일에서 설정을 또 해줘야 한다...
+
+명령어가 길때는 무조건  `package.json` 에다가 달아주기
 
 ## 웹팩 dev 설정
 
+빌드를 다시 하지 않고도 코드 변경을 바로 적용해주는 핫리로딩 작업을 해주려면 서버가 따로 필요하다(cra가 해주는 것)
 
+`$npm i webpack-dev-server -D`
 
+CORS 에러도 해결하기 위해 `$npm i webpack-cli`도 같이 설정해주자
+
+핫리로딩 위해 `npm i @pmmmwh/react-refresh-webpack-plugin react-refresh`
+
+위에 설치한 플러그인에 대한 코드는 전부 `webpack.config.ts`에 작성
 ## 폴더 구조와 리액트 라우터
 
-
-
+- `pages`: 서비스 페이지
+    - `Login`: 로그인 페이지
+    - `SignUp`: 회원가입 페이지
+- `copmponents`: 페이지를 구성하는 겹치는 컴포넌트(소스)들
+- `layouts`: 페이지들의 공통 레이아웃
+- `hooks`
+- `typings`
 ## 코드 스플리팅과 이모션
 
 
